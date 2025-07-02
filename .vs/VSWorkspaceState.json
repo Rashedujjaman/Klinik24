@@ -1,10 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\app\\(tabs)",
-    "\\assets",
+    "\\app",
     "\\components",
-    "\\hooks",
     "\\scripts"
   ],
   "SelectedNode": "\\package.json",

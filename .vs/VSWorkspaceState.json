@@ -4,8 +4,10 @@
     "\\app",
     "\\assets",
     "\\assets\\images",
+    "\\components",
+    "\\constants",
     "\\scripts"
   ],
-  "SelectedNode": "\\app\\index.tsx",
+  "SelectedNode": "\\assets\\images\\clicnic.png",
   "PreviewInSolutionExplorer": false
 }

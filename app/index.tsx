@@ -1,8 +1,8 @@
 import { ScrollView, StyleSheet } from 'react-native';
 import NavBar from '../components/NavBar';
 import AdvertisementBanner from '../components/AdvertisementBanner';
-//import ServicesSection from '../components/ServicesSection';
-//import PartnersSection from '../components/PartnersSection';
+import ServicesSection from '../components/ServiceSection';
+import PartnersSection from '../components/PartnerSection';
 import Footer from '../components/Footer';
 import { Colors } from '../constants/Colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -14,8 +14,8 @@ export default function HomeScreen() {
             <ScrollView style={styles.container}>
                 <NavBar />
                 <AdvertisementBanner />
-                {/*<ServicesSection />*/}
-                {/*<PartnersSection />*/}
+                <PartnersSection />
+                <ServicesSection />
                 <Footer />
             </ScrollView>
         </SafeAreaView>

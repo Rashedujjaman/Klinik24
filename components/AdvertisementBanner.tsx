@@ -6,7 +6,7 @@ export default function AdvertisementBanner() {
     const { width } = useWindowDimensions();
     const isMobile = width < 768;
     return (
-        <View style={[styles.bannerContainer, { flexDirection: isMobile ? 'column' : 'row' }]} >
+        <View style={[styles.bannerContainer, { flexDirection: isMobile ? 'column' : 'row', paddingHorizontal: isMobile ? 20 : 165 }]} >
             <View style={styles.column1 }>
                 <Text style={styles.bannerHeadline}>Klinik 24 is ready to serve the public&apos;s concerns 24/7.</Text>
                 <Text style={styles.bannerText}>A hospital is an integral part of a social and health organization, with the function of providing comprehensive services.</Text>
@@ -18,7 +18,7 @@ export default function AdvertisementBanner() {
                 >
 
                         <TouchableOpacity style={styles.button}>
-                            <Image source={require('../assets/images/pasient.png')} ></Image>
+                            <Image source={require('../assets/images/pasient.png')} />
                             <Text style={styles.buttonText}>View Services</Text>
                         </TouchableOpacity>
 
@@ -27,7 +27,7 @@ export default function AdvertisementBanner() {
             <View style={styles.column2}>
                 <Image
                     source={require('../assets/images/doctor.png')}
-                    style={styles.bannerImage}
+                    style={[styles.bannerImage, { height: isMobile ? 410 : 610, width: isMobile ? 320 : 480 }]}
                 />
             </View>
         </View>
@@ -37,7 +37,6 @@ export default function AdvertisementBanner() {
 const styles = StyleSheet.create({
     bannerContainer: {
         width: '100%',
-        backgroundColor: '#f8f8f8',
         paddingVertical: 20,
     },
 
@@ -47,7 +46,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'flex-start',
-        paddingHorizontal: 20,
         gap: 20,
         marginVertical: 10,
     },
@@ -91,8 +89,8 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     bannerImage: {
-        width: 480,
-        height: 610,
+        //width: 480,
+        //height: 610,
         borderRadius: 10,
     },
 });

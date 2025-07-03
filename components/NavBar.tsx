@@ -14,7 +14,7 @@ export default function NavBar() {
     return (
         <View style={styles.wrapper}>
             {/* Top Navbar */}
-            <View style={[styles.navbar, { justifyContent: isMobile ? 'space-between' : 'flex-start' }]}>
+            <View style={[styles.navbar, { justifyContent: isMobile ? 'space-between' : 'flex-start', paddingHorizontal: isMobile ? 20 : 165 }]}>
                 <View style={styles.logoContainer}>
                     <Text style={styles.logoText}>
                         Klinik <Text style={styles.logoHighlight}>24.</Text>
@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
     navbar: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 20,
         paddingVertical: 10,
         gap: 100,
     },

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, useWindowDimensions } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, useWindowDimensions, Linking } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import AntDesign from '@expo/vector-icons/AntDesign';
@@ -8,43 +8,50 @@ import { Colors } from '../constants/Colors';
 export default function Footer() {
     const { width } = useWindowDimensions();
     const isMobile = width < 768;
-    return (
-        <View style={[styles.footerContainer, { paddingHorizontal: isMobile ? 20 : 165  }]}>
-            {/* Footer Columns */}
-            <View style={styles.footerColumns}>
-                <View style={styles.column}>
-                    <View style={styles.logoContainer}>
-                        <Text style={styles.logoText}>
-                            Klinik 24.
-                        </Text>
 
-                        <LinearGradient
-                            colors={['#4A6CF7', '#67B8F7']}
-                            start={{ x: 0, y: 0 }}
-                            end={{ x: 1, y: 1 }}
-                            style={styles.plusCircle}
-                        >
-                            <AntDesign name="plus" style={styles.plusText} color="black" />
-                        </LinearGradient>
+    return (
+        <View style={[styles.footerContainer, { paddingHorizontal: isMobile ? 20 : 165 }]}>
+            {/* Footer Columns */}
+            <View style={[styles.footerColumns, {
+                flexDirection: isMobile ? 'column' : 'row',
+                gap: isMobile ? 30 : 20
+            }]}>
+                {/* First Column - Logo and Address */}
+                <View style={[styles.column, { alignItems: isMobile ? 'center' : 'flex-start', width: isMobile ? '100%' : '30%' }]}>
+                    <View style={[styles.logoContainer, {
+                        justifyContent: isMobile ? 'center' : 'flex-start',
+                        marginBottom: isMobile ? 20 : 0
+                    }]}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <Text style={styles.logoText}>Klinik 24.</Text>
+                            <LinearGradient
+                                colors={['#4A6CF7', '#67B8F7']}
+                                start={{ x: 0, y: 0 }}
+                                end={{ x: 1, y: 1 }}
+                                style={styles.plusCircle}
+                            >
+                                <AntDesign name="plus" style={styles.plusText} color="white" />
+                            </LinearGradient>
+                        </View>
+
                     </View>
                     <Text style={styles.text}>Jl. Lebak Bulus I Kav. 29 Cilandak</Text>
                     <Text style={styles.text}>Jakarta Selatan, DKI Jakarta, Indonesia 12340</Text>
-                    <View style={styles.socialIcons}>
-                        <TouchableOpacity>
-                            <FontAwesome name="youtube" size={24} color={Colors.light.background} style={styles.icon} />
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <FontAwesome name="facebook" size={24} color={Colors.light.background} style={styles.icon} />
+                    <View style={[styles.socialIcons, { justifyContent: isMobile ? 'center' : 'flex-start' }]}>
+                        <TouchableOpacity >
+                            <FontAwesome name="youtube" size={20} color={Colors.light.background} style={styles.icon} />
                         </TouchableOpacity>
                         <TouchableOpacity >
-                            <FontAwesome name="whatsapp" size={24} color={Colors.light.background} style={styles.icon} />
+                            <FontAwesome name="facebook" size={20} color={Colors.light.background} style={styles.icon} />
                         </TouchableOpacity>
-
+                        <TouchableOpacity >
+                            <FontAwesome name="whatsapp" size={20} color={Colors.light.background} style={styles.icon} />
+                        </TouchableOpacity>
                     </View>
                 </View>
 
                 {/* Company Info */}
-                <View style={styles.column}>
+                <View style={[styles.column, { alignItems: isMobile ? 'center' : 'flex-start', width: isMobile ? '100%' : '20%' }]}>
                     <Text style={styles.columnTitle}>Company Info</Text>
                     <TouchableOpacity><Text style={styles.link}>Tentang Kami</Text></TouchableOpacity>
                     <TouchableOpacity><Text style={styles.link}>Karir</Text></TouchableOpacity>
@@ -53,7 +60,7 @@ export default function Footer() {
                 </View>
 
                 {/* Cabang */}
-                <View style={styles.column}>
+                <View style={[styles.column, { alignItems: isMobile ? 'center' : 'flex-start', width: isMobile ? '100%' : '20%' }]}>
                     <Text style={styles.columnTitle}>Cabang</Text>
                     <Text style={styles.text}>Tangerang</Text>
                     <Text style={styles.text}>Jakarta</Text>
@@ -62,7 +69,7 @@ export default function Footer() {
                 </View>
 
                 {/* Kontak Kami */}
-                <View style={styles.column}>
+                <View style={[styles.column, { alignItems: isMobile ? 'center' : 'flex-start', width: isMobile ? '100%' : '20%' }]}>
                     <Text style={styles.columnTitle}>Kontak Kami</Text>
                     <Text style={styles.text}>+626564465455</Text>
                     <Text style={styles.text}>info@klinik24.com</Text>
@@ -70,7 +77,8 @@ export default function Footer() {
                 </View>
             </View>
 
-            <Text style={styles.copyright}>Copyright © Klinik24 2022</Text>
+            {/* Copyright */}
+            <Text style={[styles.copyright, { marginTop: isMobile ? 20 : 40 }]}>Copyright © Klinik24 2022</Text>
         </View>
     );
 }
@@ -82,12 +90,18 @@ const styles = StyleSheet.create({
         borderTopWidth: 1,
         borderTopColor: '#e0e0e0',
     },
-
+    footerColumns: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        marginBottom: 20,
+    },
+    column: {
+        marginBottom: 30,
+    },
     logoContainer: {
         position: 'relative',
         flexDirection: 'row',
         alignItems: 'center',
-        width: '60%',
     },
     logoText: {
         fontSize: 32,
@@ -96,7 +110,7 @@ const styles = StyleSheet.create({
     },
     plusCircle: {
         position: 'absolute',
-        right: -10,
+        left: 130,
         top: -10,
         width: 24,
         height: 24,
@@ -110,39 +124,16 @@ const styles = StyleSheet.create({
         elevation: 3,
     },
     plusText: {
-        color: '#fff',
-        fontSize: 18,
+        fontSize: 14,
         fontWeight: 'bold',
-    },
-
-
-    logoSection: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: 30,
-    },
-    logo: {
-        width: 120,
-        height: 40,
     },
     socialIcons: {
         flexDirection: 'row',
-        gap: 20,
+        gap: 15,
+        marginTop: 20,
     },
     icon: {
-        padding: 8,
-    },
-    footerColumns: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-        gap: 20,
-        marginBottom: 30,
-    },
-    column: {
-        minWidth: 150,
-        marginBottom: 20,
+        padding: 5,
     },
     columnTitle: {
         fontSize: 16,
@@ -153,7 +144,8 @@ const styles = StyleSheet.create({
     link: {
         fontSize: 14,
         color: Colors.light.background,
-        marginBottom: 10,
+        marginBottom: 12,
+        lineHeight: 20,
     },
     text: {
         fontSize: 14,
@@ -166,7 +158,7 @@ const styles = StyleSheet.create({
         color: Colors.light.background,
         fontSize: 12,
         borderTopWidth: 1,
-        borderTopColor: '#e0e0e0',
+        borderTopColor: 'rgba(255,255,255,0.2)',
         paddingTop: 20,
     },
 });

@@ -9,7 +9,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 export default function NavBar() {
     const [expanded, setExpanded] = useState(false);
     const { width } = useWindowDimensions();
-    const isMobile = width < 920;
+    const isMobile = width < 768;
 
     return (
         <View style={styles.wrapper}>
@@ -96,8 +96,8 @@ const styles = StyleSheet.create({
     navbar: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 16,
-        paddingVertical: 16,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
         gap: 100,
     },
     logoContainer: {
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     loginButton: {
         flexDirection: 'row',
         gap: 8,
-        paddingVertical: 4,
+        paddingVertical: 8,
         paddingHorizontal: 16,
         borderRadius: 50,
     },
